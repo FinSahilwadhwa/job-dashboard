@@ -1,8 +1,8 @@
 const { createClient } = supabase;
 
 const supabaseClient = createClient(
-  "SUPABASE_URL",
-  "SUPABASE_ANON_KEY"
+  "https://unncbeiqbntljutgkvhj.supabase.co",
+  "sb_publishable_TaMX2BTySoyAs_eT_LgSSg_HRGeiPxN"
 );
 
 // Protect dashboard
