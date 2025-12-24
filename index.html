@@ -2,16 +2,39 @@
 <html>
 <head>
   <title>Login</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
 <h2>Login</h2>
-<input id="email" type="email" placeholder="Email" />
-<input id="password" type="password" placeholder="Password" />
-<button onclick="login()">Login</button>
+<input id="email" type="email" />
+<input id="password" type="password" />
+<button id="loginBtn">Login</button>
+
 <p id="error"></p>
 
-<script src="script.js"></script>
+<script>
+  const supabaseClient = supabase.createClient(
+    "https://unncbeiqbntljutgkvhj.supabase.co",
+    "sb_publishable_TaMX2BTySoyAs_eT_LgSSg_HRGeiPxN"
+  );
+
+  document.getElementById("loginBtn").onclick = async () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const { error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      document.getElementById("error").innerText = error.message;
+    } else {
+      window.location.href = "dashboard.html";
+    }
+  };
+</script>
+
 </body>
 </html>
